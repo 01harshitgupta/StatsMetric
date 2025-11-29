@@ -1,0 +1,36 @@
+.circle-wrapper {
+  text-align: center;
+  position: relative;
+}
+
+.bg-circle {
+  fill: none;
+  stroke: #333;
+  stroke-width: 12;
+}
+
+.fg-circle {
+  fill: none;
+  stroke: #ff6f3c;
+  stroke-width: 12;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s ease, stroke 0.5s ease;
+  filter: drop-shadow(0 0 10px #ff6f3c);
+}
+
+.circle-info {
+  margin-top: -10px;
+  color: #fff;
+  text-align: center;
+}
+
+.circle-info strong {
+  color: #ff6f3c;
+  font-size: 18px;
+}
+
+.circle-info p {
+  margin: 5px 0 0 0;
+  color: #ffb380;
+  font-weight: bold;
+}
