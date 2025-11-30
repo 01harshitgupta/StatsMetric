@@ -1,9 +1,17 @@
+// server.js
 import express from "express";
 import cors from "cors";
 import fetch from "node-fetch";
 
 const app = express();
-app.use(cors());
+
+// Allow requests from your Netlify site (adjust origin if you want stricter)
+app.use(
+  cors({
+    origin: "https://cheery-kheer-cfa7fb.netlify.app", // or "https://your-netlify-site.netlify.app"
+  })
+);
+
 app.use(express.json());
 
 app.post("/leetcode", async (req, res) => {
@@ -20,17 +28,22 @@ app.post("/leetcode", async (req, res) => {
 
     if (!response.ok) {
       const text = await response.text();
-      console.error('LeetCode fetch failed', response.status, text);
-      return res.status(502).json({ error: "Upstream fetch failed", status: response.status });
+      console.error("LeetCode fetch failed", response.status, text);
+      return res
+        .status(502)
+        .json({ error: "Upstream fetch failed", status: response.status });
     }
 
     const data = await response.json();
-    res.json(data);
-
+    return res.json(data);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: "Failed to fetch LeetCode data" });
+    return res
+      .status(500)
+      .json({ error: "Failed to fetch LeetCode data" });
   }
 });
 
-app.listen(3000, () => console.log("Server running on port 3000"));
+// IMPORTANT: use process.env.PORT for Render/Railway
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
