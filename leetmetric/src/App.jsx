@@ -34,7 +34,7 @@ function App() {
     };
 
     try {
-      const res = await fetch("http://localhost:3000/leetcode", {
+      const res = await fetch("https://leetmetric-server.onrender.com/leetcode", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(query),
