@@ -1,52 +1,122 @@
+/* ============================================
+   CARDS GRID – Hacker Neon Theme
+   ============================================ */
 .cards-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 22px;
   margin-top: 35px;
+  position: relative;
 }
 
+/* ============================================
+   INDIVIDUAL CARD – Cyber UI
+   ============================================ */
 .card {
-  background-color: #2a2a2a;
-  padding: 18px;
-  border-radius: 12px;
-  box-shadow: 0 6px 15px #0005;
-  transition: 0.3s, transform 0.3s ease;
+  background: rgba(0, 8, 4, 0.92);
+  padding: 20px;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 255, 120, 0.25);
   position: relative;
   overflow: hidden;
+
+  box-shadow:
+    0 0 14px rgba(0, 255, 120, 0.15),
+    0 10px 22px rgba(0, 0, 0, 0.9);
+
+  transition: transform 0.25s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
+/* Floating glowing sweep */
 .card::before {
   content: '';
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at center, #ff6f3c40, transparent 70%);
-  transform: rotate(45deg);
-  transition: 0.5s;
+  top: -40%;
+  left: -40%;
+  width: 180%;
+  height: 180%;
+
+  background: conic-gradient(
+    from 145deg,
+    transparent 0deg,
+    rgba(0, 255, 120, 0.25) 40deg,
+    transparent 120deg
+  );
+
   opacity: 0;
+  transform: rotate(0deg);
+  transition: opacity 0.5s ease, transform 0.8s linear;
+  z-index: 0;
 }
 
 .card:hover::before {
   opacity: 1;
+  transform: rotate(20deg);
 }
 
+/* Soft glow layer */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(0, 255, 140, 0.08), transparent 70%);
+  opacity: 0;
+  transition: 0.35s ease;
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+/* Elevation + neon when hovered */
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px #ff6f3c50;
+  transform: translateY(-6px);
+  border-color: rgba(0, 255, 160, 0.6);
+  box-shadow:
+    0 0 28px rgba(0, 255, 120, 0.35),
+    0 16px 35px rgba(0, 0, 0, 1);
 }
 
+/* ============================================
+   CARD TEXT – Hacker Green
+   ============================================ */
 .card h4 {
   margin: 0;
-  color: #ff6f3c;
-  text-shadow: 0 0 5px #ff6f3c70;
+  font-size: 16px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  color: #7affb7;
+  text-shadow:
+    0 0 6px #00ff7b,
+    0 0 16px #00ffb7;
+  position: relative;
+  z-index: 1;
 }
 
 .card p {
-  font-size: 22px;
+  font-size: 26px;
   margin-top: 10px;
-  font-weight: bold;
-  color: #ffb380;
-  text-shadow: 0 0 3px #ff6f3c50;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+
+  color: #caffdd;
+  text-shadow:
+    0 0 8px rgba(0, 255, 140, 0.4),
+    0 0 18px rgba(0, 255, 160, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   RESPONSIVE FOR MOBILE
+   ============================================ */
+@media (max-width: 600px) {
+  .cards-container {
+    grid-template-columns: 1fr;
+  }
+
+  .card p {
+    font-size: 22px;
+  }
 }

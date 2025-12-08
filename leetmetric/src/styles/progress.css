@@ -1,36 +1,67 @@
 .circle-wrapper {
   text-align: center;
   position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
 }
 
+/* background track */
 .bg-circle {
   fill: none;
-  stroke: #333;
-  stroke-width: 12;
+  stroke: rgba(0, 255, 120, 0.12);
+  stroke-width: 10;
 }
 
+/* foreground progress – neon hacker glow */
 .fg-circle {
   fill: none;
-  stroke: #ff6f3c;
-  stroke-width: 12;
+  stroke: #00ff7b;
+  stroke-width: 10;
   stroke-linecap: round;
-  transition: stroke-dashoffset 1s ease, stroke 0.5s ease;
-  filter: drop-shadow(0 0 10px #ff6f3c);
+  stroke-dasharray: 440;
+  transition:
+    stroke-dashoffset 0.9s ease-out,
+    stroke 0.3s ease,
+    filter 0.3s ease;
+  filter:
+    drop-shadow(0 0 4px #00ff7b)
+    drop-shadow(0 0 12px rgba(0, 255, 123, 0.9));
 }
 
+.circle-wrapper:hover .fg-circle {
+  stroke: #7affb7;
+  filter:
+    drop-shadow(0 0 6px #7affb7)
+    drop-shadow(0 0 20px rgba(0, 255, 183, 0.95));
+}
+
+/* ========= text in middle ========= */
 .circle-info {
-  margin-top: -10px;
-  color: #fff;
+  position: absolute;
+  inset: 50% 0 auto 0;
+  transform: translateY(-50%);
+  color: #caffdd;
   text-align: center;
+  pointer-events: none;
 }
 
 .circle-info strong {
-  color: #ff6f3c;
+  display: block;
+  color: #7affb7;
   font-size: 18px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-shadow:
+    0 0 6px #00ff7b,
+    0 0 14px #00ffb7;
 }
 
 .circle-info p {
-  margin: 5px 0 0 0;
-  color: #ffb380;
-  font-weight: bold;
+  margin: 4px 0 0;
+  color: #e6ffe6;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 6px rgba(0, 255, 140, 0.5);
 }

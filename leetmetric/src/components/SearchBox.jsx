@@ -12,7 +12,7 @@ export default function SearchBox({
     <div className="search-page">
       <div className="search-image">
        
-        <img src="/photo3.jpeg" alt="LeetMetric Banner" />
+        <img src="/bg-photo.jpg" alt="LeetMetric Banner" />
       </div>
 
       <div className="search-box">
